@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>화성동탄2 C-14블록 뉴홈 선택형 계약자 모임</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --blue-dark: #1D4ED8;
+    --red: #DC2626;
+    --red-light: #FEF2F2;
+    --bg: #F8FAFC;
+    --card: #ffffff;
+    --text: #1E293B;
+    --muted: #64748B;
+    --border: #E2E8F0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── 긴급 배너 ── */
+  .urgent-banner {
+    background: var(--red);
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  /* ── 헤더 ── */
+  header {
+    background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%);
+    color: #fff;
+    text-align: center;
+    padding: 48px 20px 40px;
+  }
+  header h1 {
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  header p {
+    font-size: clamp(14px, 2.5vw, 17px);
+    opacity: 0.9;
+  }
+
+  /* ── 탭 네비 ── */
+  .tab-nav {
+    background: #fff;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    position: sticky;
+    top: 40px;
+    z-index: 90;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-nav button {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .tab-nav button:hover { color: var(--blue); }
+  .tab-nav button.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  /* ── 컨텐츠 ── */
+  .tab-content { display: none; max-width: 860px; margin: 0 auto; padding: 36px 20px 60px; }
+  .tab-content.active { display: block; }
+
+  /* ── 카드 ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+
+  /* ── 섹션 타이틀 ── */
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: var(--blue);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── 개요: 사태 요약 그리드 ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 560px) { .summary-grid { grid-template-columns: 1fr; } }
+
+  .summary-card {
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .summary-card.promise { background: #F0FDF4; border-color: #86EFAC; }
+  .summary-card.reality { background: var(--red-light); border-color: #FCA5A5; }
+  .summary-card.damage  { background: #FFFBEB; border-color: #FCD34D; }
+  .summary-card.equity  { background: var(--blue-light); border-color: #93C5FD; }
+  .summary-card.doublestd { background: #FDF4FF; border-color: #E9D5FF; }
+
+  .summary-card .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+    opacity: .7;
+  }
+  .summary-card .value { font-size: 15px; font-weight: 600; }
+
+  /* ── 신뢰보호원칙 박스 ── */
+  .principle-box {
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #1E40AF;
+  }
+  .principle-box strong { display: block; margin-bottom: 6px; font-size: 15px; }
+
+  /* ── 현황 업데이트 ── */
+  .update-list { list-style: none; }
+  .update-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .update-list li:last-child { border-bottom: none; }
+  .update-list .dot {
+    width: 8px; height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .update-list .dot.red { background: var(--red); }
+
+  /* ── 액션: 버튼 그룹 ── */
+  .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background .2s, transform .1s;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-dark); }
+  .btn-outline { background: #fff; color: var(--blue); border: 1.5px solid var(--blue); }
+  .btn-outline:hover { background: var(--blue-light); }
+  .btn-red { background: var(--red); color: #fff; }
+  .btn-red:hover { background: #B91C1C; }
+  .btn-sm { padding: 7px 14px; font-size: 13px; }
+
+  /* ── textarea ── */
+  .copy-block { margin-top: 14px; }
+  .copy-block label { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 6px; display: block; }
+  .copy-block textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    resize: vertical;
+    background: #FAFAFA;
+    font-family: inherit;
+  }
+  .copy-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+
+  /* ── 액션 서브 섹션 ── */
+  .action-section { margin-bottom: 32px; }
+  .action-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .action-section p { font-size: 14px; color: var(--muted); }
+
+  /* ── 액션 내부 서브탭(필 형태) ── */
+  .subtab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .subtab-nav button {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .subtab-nav button:hover { border-color: var(--blue); color: var(--blue); }
+  .subtab-nav button.active {
+    background: #1E293B;
+    border-color: #1E293B;
+    color: #fff;
+  }
+  .subtab-content { display: none; }
+  .subtab-content.active { display: block; }
+  .notice {
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #92400E;
+    margin-top: 10px;
+  }
+  .targets { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .target-badge {
+    background: var(--blue-light);
+    color: var(--blue);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #BFDBFE;
+  }
+
+  /* ── 구분선 ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+  /* ── 푸터 ── */
+  footer {
+    background: #1E293B;
+    color: #94A3B8;
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer a { color: #60A5FA; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── 반응형 ── */
+  @media (max-width: 480px) {
+    .tab-nav button { padding: 12px 14px; font-size: 13px; }
+    header { padding: 32px 16px 28px; }
+    .tab-content { padding: 24px 14px 48px; }
+    .card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 긴급 배너 -->
+<div class="urgent-banner">
+  🚨 약속은 두 번 어겼고, 우리는 계약금까지 냈습니다
+</div>
+
+<!-- 헤더 -->
+<header>
+  <h1>화성동탄2 C-14블록 뉴홈 선택형 계약자 모임</h1>
+  <p>2022년 발표된 전용 모기지, 본청약 이후에도 여전히 미확정입니다</p>
+  <p>서민 자격만 깐깐히 걸러놓고, 가격은 시장 기준으로 매겼습니다</p>
+</header>
+
+<!-- 탭 네비게이션 -->
+<nav class="tab-nav">
+  <button class="active" onclick="switchTab('overview', this)">개요</button>
+  <button onclick="switchTab('action', this)">액션</button>
+</nav>
+
+<!-- ===== 탭1: 개요 ===== -->
+<div id="tab-overview" class="tab-content active">
+
+  <h2 class="section-title">사태 요약</h2>
+  <div class="summary-grid">
+    <div class="summary-card promise">
+      <div class="label">📋 약속 (2022.10.26 국토부 발표)</div>
+      <div class="value">뉴홈 선택형·나눔형 동일 조건<br>전용 모기지 지원 (한도 5억, LTV 80%,<br>DSR 미적용, 금리 1.9~3.0%, 40년 만기)</div>
+    </div>
+    <div class="summary-card reality">
+      <div class="label">❌ 현실 (2025.7.31 본청약 공고)</div>
+      <div class="value">모기지 관련 조항 전부 삭제<br>LH는 "국토부가 2025년 내 발표 예정"<br>이라 안내 → 이를 믿고 계약 진행</div>
+    </div>
+    <div class="summary-card damage">
+      <div class="label">👥 처분행위 완료 상황</div>
+      <div class="value">2025.12 계약금 납부 완료<br>청약통장 사용(효력 상실)<br>되돌릴 수 없는 재산상 처분 완료</div>
+    </div>
+    <div class="summary-card equity">
+      <div class="label">⏰ 반복된 시한 불이행</div>
+      <div class="value">"2025년 내 발표" 무산<br>→ "2026년 상반기 확정" 재천명<br>(2026.1.7. 대한경제 보도)</div>
+    </div>
+    <div class="summary-card doublestd">
+      <div class="label">⚖️ 자격은 엄격히, 가격은 시장가로</div>
+      <div class="value">소득·자산·무주택 요건은 일반분양보다<br>훨씬 까다롭게 검증하면서, 택지비는<br>조성원가가 아닌 감정가로 산정해<br>분양가는 오히려 시세 수준</div>
+    </div>
+  </div>
+
+  <div class="principle-box">
+    <strong>신뢰보호원칙이란?</strong>
+    행정기관은 국민에게 공적으로 표명한 조건을 특별한 사정 없이 함부로 뒤집을 수 없다는 「행정절차법」 제4조상 원칙입니다. 저희는 본청약 시점에 이미 모기지 조항이 빠진 것을 알고 있었지만, LH가 안내한 "국토부의 2025년 내 발표"라는 구체적 약속을 신뢰하여 계약금 납부와 청약통장 사용이라는 되돌릴 수 없는 처분행위를 완료했습니다. 그 약속이 지켜지지 않은 채 다시 새로운 시한(2026년 상반기)만 제시되고 있는 것이 이번 사안의 핵심입니다.
+  </div>
+
+  <div class="principle-box" style="background:#FFFBEB;border-left-color:#F59E0B;color:#78350F;">
+    <strong>택지비 산정 방식도 함께 짚어야 할 문제입니다</strong>
+    「주택법」 제57조에 따르면 공공택지에서 공급하는 주택의 택지비는 원칙적으로 해당 택지의 <strong>공급가격(조성원가 기반)</strong>에 관련 비용을 가산한 금액으로 산정합니다. 그런데 이번 단지는 택지비 산정에 <strong>감정가</strong>가 반영되어, 비슷한 시기 분양한 인근 민간분양보다 오히려 더 비싼 공공분양이 되었다는 문제 제기가 있습니다.<br><br>
+    더 근본적인 문제는 <strong>자격요건과 가격 산정 기준의 불일치</strong>입니다. 뉴홈 선택형은 무주택세대구성원 전원의 소득·자산(총자산 3.54억원 이하 등)을 엄격히 검증해 자격이 없는 신청자는 애초에 걸러내는 구조입니다. 즉 "서민만 청약할 수 있도록" 문턱을 높여놓았습니다. 그런데 정작 가격을 매기는 방식은 서민 기준(조성원가)이 아니라 시장 기준(감정가)을 따랐습니다. 자격은 서민 기준으로 깐깐하게 걸러놓고, 가격은 시장 기준으로 매기는 것은 공공주택 정책의 근본 취지에 반한다고 판단됩니다.
+  </div>
+
+  <h2 class="section-title">계약자 목소리</h2>
+  <div class="card">
+    <p style="font-style:italic; color:var(--text);">
+      "본청약자들도 국토부가 2025년 내에 전용 모기지를 출시할 것이라 믿고 본청약에 도전하고 계약까지 진행했습니다. 하지만 2025년 출시 약속은 2026년 상반기로 연기되었고, 그마저도 소식이 없습니다.<br><br>
+      뉴홈 선택형은 서민을 위한 공공주택입니다. 그런데 가장 중요한 모기지가 빠지면서, 현재로서는 임대료만 내다가 결국 분양받지 못하고 나와야 하는 상황이 될 수도 있습니다. 생애 한 번뿐인 특별공급 자격을, 단지 6년간 임대로 살기 위해 쓰는 사람이 어디 있겠습니까.<br><br>
+      게다가 택지비 산정에서도 조성원가가 아닌 감정가가 반영되며, 비슷한 시기 분양한 민간분양보다 더 비싼 공공분양이 되었습니다. 서민 주거 마련을 위한 정책이 맞는지 의문이 듭니다."
+    </p>
+  </div>
+
+  <h2 class="section-title">타임라인</h2>
+  <div class="card" style="padding:16px 24px;">
+    <ul class="update-list">
+      <li>
+        <span class="dot"></span>
+        <span><strong>2022.10.26.</strong> 국토부, 「청년·서민 주거안정을 위한 공공주택 50만호 공급계획」 발표 — 선택형·나눔형 동일 조건 전용 모기지 지원 명시</span>
+      </li>
+      <li>
+        <span class="dot"></span>
+        <span><strong>2024.1.4.</strong> 화성동탄2 C-14블록 사전청약 공고 (모기지 조건 미확정 상태로 진행)</span>
+      </li>
+      <li>
+        <span class="dot red"></span>
+        <span><strong>2025.7.31.</strong> 본청약 공고 — 모기지 조항 완전 삭제. LH는 "국토부가 연내 발표 예정"이라 안내</span>
+      </li>
+      <li>
+        <span class="dot"></span>
+        <span><strong>2025.8~12.</strong> 계약 체결, 계약금 납부, 청약통장 사용(효력 상실) 완료</span>
+      </li>
+      <li>
+        <span class="dot red"></span>
+        <span><strong>2025년 말.</strong> 예고된 "연내 발표" 무산</span>
+      </li>
+      <li>
+        <span class="dot red"></span>
+        <span><strong>2026.1.7.</strong> 대한경제 보도 — 국토부 관계자 "2026년 상반기 중 확정·출시" 재천명</span>
+      </li>
+      <li>
+        <span class="dot"></span>
+        <span><strong>진행 중.</strong> 국토부·LH 대상 정보공개청구, 다수인관련민원 접수 준비</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 탭2: 액션 ===== -->
+<div id="tab-action" class="tab-content">
+
+  <nav class="subtab-nav">
+    <button class="active" onclick="switchSubTab('minwon', this)">다수인관련민원</button>
+    <button onclick="switchSubTab('press', this)">언론 제보</button>
+    <button onclick="switchSubTab('mp', this)">의원 제보</button>
+    <button onclick="switchSubTab('foi', this)">정보공개청구</button>
+  </nav>
+
+  <!-- 2-1. 다수인관련민원 -->
+  <div id="subtab-minwon" class="subtab-content active">
+  <div class="action-section">
+    <h2 class="section-title">다수인관련민원 (국민신문고)</h2>
+    <div class="card">
+      <h3>동일 사유로 여러 명이 함께 접수하면 병합 처리됩니다</h3>
+      <p>「민원 처리에 관한 법률」 제2조제5호에 따라 동일 사유로 다수인이 관련된 민원은 대표자를 선정해 공동 접수할 수 있습니다. 국토교통부·LH 각각 접수해 주세요.</p>
+      <div class="btn-group">
+        <a href="#" class="btn btn-primary">국민신문고 민원 접수</a>
+        <a href="#" class="btn btn-outline">한국토지주택공사(LH) 민원</a>
+      </div>
+      <div class="copy-block">
+        <label>민원 취지문 전문 (복사 후 접수)</label>
+        <textarea id="minwon-text" rows="14" readonly>[다수인관련민원 신청]
+
+제목: 뉴홈 선택형(화성동탄2 C-14블록) 전용 모기지 미시행에 따른 신뢰보호 원칙 위반 및 대책 마련 요구
+
+민원 요지:
+
+1. 국토교통부는 2022.10.26. 「청년·서민 주거안정을 위한 공공주택 50만호 공급계획」을 통해 뉴홈 선택형에 나눔형과 동일한 조건(한도 5억원, LTV 80%, DSR 미적용, 금리 1.9~3.0%, 40년 만기)의 전용 모기지를 지원하겠다고 발표하였습니다.
+
+2. 2025.7.31. 본청약 공고 당시 이미 모기지 관련 조항은 삭제된 상태였으나, LH는 "국토교통부에서 2025년 내 뉴홈 모기지 적용 요건을 발표할 예정"이라고 안내하였습니다. 신청인들은 이 안내를 신뢰하여 본청약을 신청하고, 계약금 납부와 청약통장 사용(효력 상실)까지 완료하였습니다.
+
+3. 그러나 2025년 내 발표는 이루어지지 않았고, 이후 언론보도(대한경제, 2026.1.7.)를 통해 국토교통부가 이 약속을 지키지 못한 채 "2026년 상반기 출시"라는 새로운 시한만 다시 제시하고 있다는 사실이 확인되었습니다.
+
+4. 이는 「행정절차법」 제4조가 정한 신뢰보호 원칙에 반하는 것으로, 신청인들은 아래와 같이 요구합니다.
+
+   가. 뉴홈 선택형 전용 모기지 상품의 구체적 확정 시기 및 내용 공개
+   나. 이미 계약을 체결한 기존 계약자에 대한 소급 적용방안 마련
+   다. 반복된 발표 지연에 따라 신청인들이 입은 금융비용 증가분에 대한 보상 또는 구제방안 마련
+
+첨부자료: 2022.10.26. 국토교통부 보도자료, 사전청약·본청약 공고문 대조표, 관련 언론보도</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('minwon-text', this)">복사하기</button>
+        </div>
+      </div>
+      <div class="notice">📌 국토교통부·LH 두 곳 모두 접수하시고, 접수증(접수번호)은 꼭 보관해 주세요. 이후 정보공개청구·의원실 전달 시 증빙자료로 활용됩니다.</div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 2-2. 언론 제보 -->
+  <div id="subtab-press" class="subtab-content">
+  <div class="action-section">
+    <h2 class="section-title">언론 제보</h2>
+    <div class="card">
+      <h3>기자 제보문 전문</h3>
+      <p>아래 내용을 복사해 부동산·정책 담당 기자님께 이메일 또는 제보창구로 보내실 수 있습니다.</p>
+      <div class="copy-block">
+        <textarea id="press-full" rows="20" readonly>[제보]
+
+제목: "국토부 재발표 약속만 믿었는데"…뉴홈 선택형 전용 모기지, 약속 어기고 또 미뤄져
+
+■ 제보 요지
+
+국토교통부가 2022년 발표한 뉴홈 선택형 전용 모기지(한도 5억원, LTV 80%, DSR 미적용, 금리 1.9~3.0%, 40년 만기)가 3년이 지난 지금까지도 출시되지 않고 있습니다.
+
+화성동탄2 C-14블록은 2025년 7월 본청약 당시 이미 공고문에서 모기지 관련 조항이 삭제된 상태였습니다. 그런데 LH는 당시 "국토교통부에서 2025년 내 뉴홈 모기지 적용 요건을 발표할 예정"이라고 안내했고, 저희는 이 안내를 신뢰하여 본청약을 신청하고 같은 해 12월 계약금 납부, 청약통장 사용까지 완료했습니다.
+
+즉 저희는 "몰랐는데 당한 것"이 아니라, "조항이 빠진 것을 알면서도 정부의 재발표 약속을 믿고 계약을 진행한 것"입니다. 그런데 그 약속마저 지켜지지 않았습니다.
+
+■ 타임라인
+
+- 2022.10.26. 국토교통부, 뉴홈 나눔형·선택형 동일 조건 전용 모기지 지원 발표
+- 2024.01.04. 화성동탄2 C-14블록 사전청약 공고 (모기지 조건 미확정 상태)
+- 2025.07.31. 본청약 공고 — 모기지 조항 완전 삭제. 다만 LH는 "국토부가 연내 발표 예정"이라 안내
+- 2025.08~12. 계약 체결, 계약금 납부, 청약통장 사용(효력 상실)
+- 2025년 말. 예고된 "연내 발표" 무산
+- 2026.01.07. 대한경제 보도를 통해 국토부 관계자가 "2026년 상반기 중 확정·출시하겠다"고 재차 시한 제시한 사실 확인
+
+■ 쟁점
+
+1. 뉴홈 선택형은 서민·청년의 내집 마련을 돕는다는 공공주택 정책 취지로 설계되었으나, 핵심 조건인 전용 모기지가 빠지면서 임대료만 내다 분양을 포기해야 하는 상황에 놓일 수 있습니다.
+2. 자격요건과 가격 산정 기준이 서로 모순됩니다. 뉴홈 선택형은 무주택세대구성원 전원의 소득·자산(총자산 3.54억원 이하 등)을 일반분양보다 훨씬 엄격하게 검증해 "서민만 청약 가능"하도록 문턱을 높였습니다. 그런데 정작 택지비 산정은 「주택법」 제57조상 원칙(조성원가 기반 공급가격)이 아닌 감정가를 반영해, 비슷한 시기 분양한 인근 민간분양보다 오히려 비싼 공공분양이 되었습니다. 자격은 서민 기준으로, 가격은 시장 기준으로 매긴 셈입니다.
+3. 정부(LH)의 구체적 시한 약속을 믿고 계약금 납부, 청약통장 소진이라는 되돌릴 수 없는 처분을 완료했음에도, 그 약속이 지켜지지 않은 채 다시 새로운 시한만 제시되고 있습니다.
+4. 정보공개청구에 대한 국토부 답변("계획 중")과 언론에 밝힌 입장("2026년 상반기 확정")이 온도차를 보이고 있어, 실제 이행 의지에 대한 의구심이 커지고 있습니다.
+
+■ 요구사항
+① 모기지 상품 확정 시기 및 세부 조건의 조속한 공개
+② 이미 계약을 체결한 기존 계약자에 대한 소급 적용방안 마련
+③ 택지비 산정 방식(조성원가 vs 감정가)에 대한 명확한 근거 공개
+④ 엄격한 자격요건(소득·자산 검증)과 시장 기준 가격 산정 간 정합성에 대한 해명
+⑤ 지연에 따른 금융비용 증가분 보상 또는 구제방안 마련
+
+문의: [본인 이름 또는 대표 연락처]</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('press-full', this)">복사하기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>동네 카페 · 맘카페용 짧은 버전</h3>
+      <p>지역 커뮤니티에 올릴 때 쓸 수 있는 버전입니다. 여러 곳에 올려 관심을 높여주세요.</p>
+      <div class="copy-block">
+        <textarea id="press-short" rows="8" readonly>[공유글]
+
+화성동탄2 C-14블록 뉴홈 선택형 계약자입니다.
+
+2022년 국토부가 발표한 전용 모기지(고정금리 1.9~3.0%)를 믿고 본청약, 계약금 납부, 청약통장 사용까지 마쳤습니다.
+
+국토부는 "2025년 내 발표"를 약속했지만 어겼고, 이제 "2026년 상반기"로 또 미뤘습니다.
+
+택지비도 조성원가가 아닌 감정가로 산정되어 인근 민간분양보다 비쌉니다.
+
+서민을 위한 공공주택이 맞는지 의문입니다. 많은 관심 부탁드립니다.</textarea>
+        <div class="copy-row">
+          <button class="btn btn-outline btn-sm" onclick="copyText('press-short', this)">복사하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 2-3. 의원 제보 -->
+  <div id="subtab-mp" class="subtab-content">
+  <div class="action-section">
+    <h2 class="section-title">의원 제보</h2>
+    <div class="card">
+      <h3>지역구 의원에게 제보하기</h3>
+      <p>소속 정당과 상관없이 본인 지역구 의원에게 먼저 연락해 주세요.<br>[ ] 부분만 본인 상황에 맞게 바꾸세요. 관련 기사 링크도 함께 첨부하면 효과적입니다.</p>
+      <div class="copy-block" style="margin-top:12px;">
+        <textarea id="mp-msg" rows="22" readonly>안녕하세요, [지역구] 주민(예비 주민)입니다.
+
+화성동탄2 C-14블록 뉴홈 선택형 계약자로서 도움을 요청드립니다.
+
+국토교통부는 2022.10.26. 「청년·서민 주거안정을 위한 공공주택 50만호 공급계획」을 통해 뉴홈 선택형에 나눔형과 동일한 조건(한도 5억원, LTV 80%, DSR 미적용, 금리 1.9~3.0%, 40년 만기)의 전용 모기지를 지원하겠다고 발표했습니다.
+
+2025년 7월 본청약 공고 당시 이미 모기지 관련 조항은 삭제된 상태였으나, LH는 "국토교통부에서 2025년 내 뉴홈 모기지 적용 요건을 발표할 예정"이라고 안내하였습니다. 저희는 이 안내를 신뢰하여 본청약을 신청하고, 같은 해 12월 계약금 납부와 청약통장 사용까지 완료했습니다.
+
+그러나 2025년 내 발표는 이루어지지 않았고, 이후 언론보도(대한경제, 2026.1.7.)를 통해 국토교통부가 이 약속을 지키지 못한 채 "2026년 상반기 출시"라는 새로운 시한만 다시 제시하고 있다는 사실이 확인되었습니다.
+
+아울러 자격요건과 가격 산정 기준도 서로 모순됩니다. 뉴홈 선택형은 무주택세대구성원 전원의 소득·자산을 일반분양보다 훨씬 엄격하게 검증해 서민만 청약할 수 있도록 문턱을 높여놓았습니다. 그런데 정작 택지비 산정은 조성원가가 아닌 감정가를 반영해, 비슷한 시기 분양한 인근 민간분양보다 오히려 비싼 공공분양이 되었습니다. 자격은 서민 기준으로 걸러놓고 가격은 시장 기준으로 매긴 것이 아닌지 확인이 필요합니다.
+
+정부기관의 공적 안내를 신뢰하여 계약금 납부와 청약통장 사용이라는 되돌릴 수 없는 처분을 완료했음에도, 정부가 스스로 정한 시한을 재차 어긴 것은 신뢰보호 원칙에 반하는 것으로 판단됩니다. 약속된 조건이 조속히 확정되거나, 최소한 명확한 확정 시기와 기존 계약자에 대한 구제방안이 마련될 수 있도록 의원님의 도움을 간곡히 요청드립니다.
+
+[본인 이름]</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('mp-msg', this)">복사하기</button>
+        </div>
+      </div>
+      <div class="notice" style="margin-top:12px;">💡 화성동탄2 C-14블록(동탄6동)은 22대 총선 기준 <strong>화성시 을 선거구(동탄4동, 동탄6~9동)</strong> 관할입니다.</div>
+
+      <div style="overflow-x:auto; margin:14px 0;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px; min-width:420px;">
+          <thead>
+            <tr style="background:#F1F5F9;">
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">이름</th>
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">선거구 / 소속위원회</th>
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">정당</th>
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">이메일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 10px; border:1px solid var(--border);">이준석</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">화성시 을<br>과학기술정보방송통신위원회</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">개혁신당</td>
+              <td style="padding:8px 10px; border:1px solid var(--border); word-break:break-all;"><a href="mailto:j7840790@gmail.com" style="color:var(--blue);">j7840790@gmail.com</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-bottom:4px;">출처: 국회 홈페이지(assembly.go.kr) 공개 정보. 국토교통위원회 소속이 아니므로, 국토위 소속 의원실에도 함께 제보하시는 것을 권장합니다. 최신 정보는 국회 홈페이지에서 재확인하시기 바랍니다.</p>
+    </div>
+
+    <div class="card">
+      <h3>지역구 시의원(화성시의회, 라 선거구)에게 전달하기</h3>
+      <p>화성동탄2 C-14블록은 화성시의회 <strong>라 선거구(동탄4·6·8동)</strong> 관할입니다. 중선거구제로 3인의 의원이 함께 관할하므로, 세 분 모두에게 전달하시는 것을 권장합니다. 화성동탄2는 입주 전이라 아직 화성시 주민등록 대상은 아니지만, 입주 시점부터는 화성시 신규 주민이자 지방세 납부 주체가 됩니다.</p>
+
+      <div style="overflow-x:auto; margin:14px 0;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px; min-width:380px;">
+          <thead>
+            <tr style="background:#F1F5F9;">
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">이름</th>
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">직위</th>
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">정당</th>
+              <th style="padding:8px 10px; border:1px solid var(--border); text-align:left;">이메일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 10px; border:1px solid var(--border);">고병태</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">경제환경위원,<br>의회운영위원</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">더불어민주당</td>
+              <td style="padding:8px 10px; border:1px solid var(--border); word-break:break-all;"><a href="mailto:kbt0114@gmail.com" style="color:var(--blue);">kbt0114@gmail.com</a></td>
+            </tr>
+            <tr>
+              <td style="padding:8px 10px; border:1px solid var(--border);">김기현</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">보건복지위원,<br>의회운영위원</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">개혁신당</td>
+              <td style="padding:8px 10px; border:1px solid var(--border); word-break:break-all;"><a href="mailto:sokkimhae@hanmail.net" style="color:var(--blue);">sokkimhae@hanmail.net</a></td>
+            </tr>
+            <tr>
+              <td style="padding:8px 10px; border:1px solid var(--border);">조정옥</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">기획행정위원</td>
+              <td style="padding:8px 10px; border:1px solid var(--border);">더불어민주당</td>
+              <td style="padding:8px 10px; border:1px solid var(--border); word-break:break-all;"><a href="mailto:xcomein4@naver.com" style="color:var(--blue);">xcomein4@naver.com</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">출처: 화성시의회 홈페이지(council.hscity.go.kr) 공개 정보(이메일만 발췌). 임기 중 변경될 수 있으니 최신 정보는 홈페이지에서 재확인하시기 바랍니다.</p>
+
+      <div class="copy-block" style="margin-top:12px;">
+        <label>전달 문구 (수신인만 바꿔가며 3인 모두에게 전달해 주세요)</label>
+        <textarea id="city-msg" rows="16" readonly>[민원 전달 및 협조 요청]
+
+수신: [고병태 / 김기현 / 조정옥] 화성시의원님
+발신: 화성동탄2 C-14블록 뉴홈 선택형 계약자 일동
+
+제목: 뉴홈 선택형 전용 모기지 미시행 관련 지역 현안화 및 중앙정부 건의 협조 요청
+
+국토교통부는 2022.10.26. 뉴홈 선택형에 대해 나눔형과 동일한 조건의 전용 모기지를 지원하겠다고 발표했습니다.
+
+화성동탄2 C-14블록(화성시 오산동 소재) 계약자들은 본청약 당시 이미 조항이 삭제된 상태였으나, LH의 "국토부 연내 발표 예정" 안내를 신뢰하여 계약금 납부까지 완료하였습니다. 그러나 이 약속은 지켜지지 않았고, 2026년 상반기로 재차 미뤄졌습니다.
+
+해당 계약자들은 2028년 7월 입주 예정으로, 현재는 화성시 주민등록 대상이 아니나 입주 시점부터 화성시 신규 주민이자 지방세(재산세, 주민세 등) 납부 주체가 되는 예비 화성시민입니다. 정부 정책에 대한 신뢰가 무너진 채 입주하게 될 경우, 이는 동탄2 신도시 전체의 정주 만족도에도 영향을 미칠 수 있는 사안이라 판단되어 사전에 알려드립니다.
+
+협조 요청 사항:
+가. 화성시의회 차원에서 본 사안을 지역 현안으로 인지하시고, 필요시 국토교통부에 대한 건의안 채택을 검토해주시기 바랍니다.
+나. 국토교통부 소관 국가사무임을 감안하여, 국회 국토교통위원회 소속 의원실 또는 화성시 지역구 국회의원실로 사안을 연결해주실 것을 요청드립니다.
+
+[본인 이름]</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('city-msg', this)">복사하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 2-4. 정보공개청구 -->
+  <div id="subtab-foi" class="subtab-content">
+  <div class="action-section">
+    <h2 class="section-title">정보공개청구</h2>
+    <div class="card">
+      <h3>청구 대상 기관</h3>
+      <p>「공공기관의 정보공개에 관한 법률」 제10조에 따라, "계획 중"이라는 형식적 답변을 막으려면 문서 종류(기안문·회의록·공문)를 구체적으로 특정해서 청구하는 것이 중요합니다.</p>
+      <div class="targets">
+        <span class="target-badge">국토교통부 (주택기금과·공공주택정책과)</span>
+        <span class="target-badge">한국토지주택공사(LH) 경기남부지역본부</span>
+      </div>
+      <div class="copy-block">
+        <label>국토교통부 청구서 전문</label>
+        <textarea id="foi-molit" rows="16" readonly>[정보공개청구서]
+
+청구기관: 국토교통부 (주택기금과, 공공주택정책과)
+
+청구 내용:
+
+1. 2022.10.26. 발표된 「청년·서민 주거안정을 위한 공공주택 50만호 공급계획」 중 뉴홈 선택형에 적용 예정이던 전용 모기지(한도 5억원, LTV 80%, DSR 미적용, 금리 1.9~3.0%, 40년 만기) 관련하여, 2022년부터 현재까지 연도별 주택도시기금 운용계획(안 포함)에 위 모기지 상품이 반영된 이력이 있는지 확인할 수 있는 문서 일체(기안문, 검토보고서, 운용계획서 해당 페이지)
+
+2. 2025년 화성동탄2 C-14블록 본청약(2025.7.31. 공고) 당시 LH가 "국토교통부에서 연내(2025년) 뉴홈 모기지 적용 요건을 발표할 예정"이라고 밝힌 것과 관련하여, 해당 발표 계획이 무산된 경위를 확인할 수 있는 내부 검토보고서, 회의록, LH-국토교통부 간 협의 공문 일체
+
+3. 2026.1.6. 언론(대한경제)에 국토교통부 관계자가 밝힌 "2026년 상반기 중 상품 구체적 요건 확정 및 출시" 계획과 관련하여, 현재까지 진행된 검토 경과(취급은행 협의, 상품 약관 초안, 기금 재원 배정 계획 등)를 확인할 수 있는 문서 일체
+
+4. 위 모기지 상품이 확정·출시될 경우, 이미 본청약을 완료하고 계약금을 납부한 화성동탄2 C-14블록 등 기존 계약자에 대한 소급 적용 또는 별도 지원방안 검토 여부 및 관련 검토문서
+
+5. 화성동탄2 C-14블록 등 뉴홈 선택형 공공주택의 택지비 산정 시 「주택법」 제57조에 따른 공급가격(조성원가) 기준이 아닌 감정평가 방식이 적용된 경위 및 그 산정근거 자료
+
+6. 화성동탄2 C-14블록 뉴홈 선택형의 총자산·소득 기준(공고문 기준 총자산 3.54억원 이하 등)을 설정한 정책적 근거자료 및, 이러한 엄격한 자격요건을 적용하면서도 택지비 산정 시 조성원가가 아닌 감정가를 반영하기로 결정한 사유 간의 정합성을 검토한 내부 문서(정책연구용역 결과보고서, 심의 회의록 등) 일체
+
+공개 방법: 사본 교부 또는 전자파일 전송
+비공개 사유 발생 시: 「정보공개법」 제14조에 따라 비공개 부분을 제외한 나머지 부분이라도 공개하여 줄 것을 요청함</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('foi-molit', this)">복사하기</button>
+        </div>
+      </div>
+
+      <div class="copy-block" style="margin-top:20px;">
+        <label>LH 청구서 전문</label>
+        <textarea id="foi-lh" rows="10" readonly>[정보공개청구서]
+
+청구기관: 한국토지주택공사 (경기남부지역본부)
+
+청구 내용:
+
+1. 화성동탄2 C-14블록 뉴홈 선택형 본청약 입주자모집공고문(2025.7.31. 공고) 작성 과정에서, 모기지 관련 조항을 포함하지 않기로 결정한 경위 및 이와 관련한 국토교통부와의 협의 공문·회신 일체
+
+2. 2025년 8월 본청약 관련 안내 과정에서 LH가 "국토교통부에서 연내 뉴홈 모기지 적용 요건을 발표할 예정"이라고 안내한 근거 자료(국토교통부로부터 수신한 공문 또는 유선·서면 확인 내역)
+
+3. 향후 국토교통부의 모기지 상품 확정 시, 이미 계약을 체결한 화성동탄2 C-14블록 계약자에게 적용 방안을 안내할 계획이 있는지 여부 및 그 시기
+
+4. 화성동탄2 C-14블록 택지비 산정 시 적용된 산정방식(조성원가/감정가 여부) 및 그 근거자료</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('foi-lh', this)">복사하기</button>
+        </div>
+      </div>
+
+      <div class="notice" style="margin-top:12px;">📌 접수 후 10일 이내 답변이 원칙입니다(「정보공개법」 제11조, 부득이한 경우 10일 범위에서 1회 연장 가능). 비공개 또는 부실 답변 시 통지받은 날로부터 30일 이내 이의신청이 가능합니다(같은 법 제18조).</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- 푸터 -->
+<footer>
+  <p>이 페이지는 화성동탄2 C-14블록 뉴홈 선택형 계약자 모임이 운영합니다.</p>
+  <p style="margin-top:6px;">문의: [대표 연락처 또는 오픈채팅방 링크]</p>
+</footer>
+
+<script>
+  function switchTab(tabId, btn) {
+    // 모든 탭 콘텐츠 숨기기
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    // 모든 탭 버튼 비활성화
+    document.querySelectorAll('.tab-nav button').forEach(el => el.classList.remove('active'));
+    // 선택한 탭 활성화
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
+    // 탭 네비 아래로 스크롤
+    window.scrollTo({ top: document.querySelector('.tab-nav').offsetTop - 40, behavior: 'smooth' });
+  }
+
+  function switchSubTab(subtabId, btn) {
+    // 같은 서브탭 그룹 내 콘텐츠만 숨기기
+    const nav = btn.closest('.subtab-nav');
+    const container = nav.parentElement;
+    container.querySelectorAll('.subtab-content').forEach(el => el.classList.remove('active'));
+    nav.querySelectorAll('button').forEach(el => el.classList.remove('active'));
+    document.getElementById('subtab-' + subtabId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function copyText(textareaId, btn) {
+    const textarea = document.getElementById(textareaId);
+    const text = textarea.value;
+    const original = btn.textContent;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ 복사됨!';
+        btn.style.background = '#059669';
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.style.background = '';
+        }, 2000);
+      }).catch(() => fallbackCopy(textarea, btn, original));
+    } else {
+      fallbackCopy(textarea, btn, original);
+    }
+  }
+
+  function fallbackCopy(textarea, btn, original) {
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      btn.textContent = '✓ 복사됨!';
+      btn.style.background = '#059669';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+      }, 2000);
+    } catch(e) {
+      alert('복사에 실패했습니다. 직접 선택 후 복사해 주세요.');
+    }
+    window.getSelection().removeAllRanges();
+  }
+</script>
+</body>
+</html>
