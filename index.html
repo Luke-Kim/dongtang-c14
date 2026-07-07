@@ -234,6 +234,16 @@
   }
   .summary-card .value { font-size: 15px; font-weight: 600; }
 
+  /* 카드 내부 통일 표 스타일 */
+  .card-table { width: 100%; border-collapse: collapse; }
+  .card-table tr { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .card-table tr:last-child { border-bottom: none; }
+  .card-table td { padding: 7px 4px; font-size: 13.5px; vertical-align: top; }
+  .card-table td.k { color: rgba(0,0,0,0.55); width: 42%; font-weight: 500; }
+  .card-table td.v { font-weight: 700; text-align: right; }
+  .card-note { font-size: 12px; opacity: .8; margin-top: 8px; display: block; font-weight: 500; }
+  .card-tag { font-size: 11px; opacity: .75; margin-bottom: 6px; display: block; font-weight: 500; }
+
   /* ── 신뢰보호원칙 박스 ── */
   .principle-box {
     background: var(--blue-light);
@@ -433,29 +443,129 @@
   <div class="summary-grid">
     <div class="summary-card promise">
       <div class="label">📋 약속 (2022.10.26 국토부 발표)</div>
-      <div class="value">뉴홈 선택형·나눔형 동일 조건<br>전용 모기지 지원 (한도 5억, LTV 80%,<br>DSR 미적용, 금리 1.9~3.0%, 40년 만기)</div>
+      <div class="value">
+        <table class="card-table">
+          <tr>
+            <td class="k">전용 모기지<br>(임대기간→분양전환)</td>
+            <td class="v">한도 5억·LTV 80%<br>DSR 미적용·금리 1.9~3.0%<br>40년 만기</td>
+          </tr>
+          <tr>
+            <td class="k">저리 전세대출<br>(임대보증금)</td>
+            <td class="v">임대보증금 부담 완화용<br>저금리 기금대출 지원</td>
+          </tr>
+          <tr>
+            <td class="k">적용 대상</td>
+            <td class="v">뉴홈 선택형·나눔형<br>동일 조건</td>
+          </tr>
+        </table>
+      </div>
     </div>
     <div class="summary-card reality">
       <div class="label">❌ 현실 (2025.7.31 본청약 공고)</div>
-      <div class="value">모기지 관련 조항 전부 삭제<br>LH는 "국토부가 2025년 내 발표 예정"<br>이라 안내 → 이를 믿고 계약 진행</div>
+      <div class="value">
+        <table class="card-table">
+          <tr>
+            <td class="k">전용 모기지</td>
+            <td class="v">조항 전부 삭제</td>
+          </tr>
+          <tr>
+            <td class="k">저리 전세대출</td>
+            <td class="v">조건 전부 삭제</td>
+          </tr>
+          <tr>
+            <td class="k">LH 안내</td>
+            <td class="v">"국토부 2025년 내<br>발표 예정"</td>
+          </tr>
+        </table>
+        <div style="margin-top:10px; padding:10px 12px; background:rgba(220,38,38,0.1); border-left:3px solid #DC2626; border-radius:4px;">
+          <strong style="display:block; font-size:14px; color:#991B1B; font-weight:800;">→ 이 LH 안내를 신뢰하여 계약 진행</strong>
+        </div>
+      </div>
     </div>
     <div class="summary-card damage">
       <div class="label">👥 처분행위 완료 상황</div>
-      <div class="value">2025.12 계약금 납부 완료<br>청약통장 사용(효력 상실)<br>되돌릴 수 없는 재산상 처분 완료</div>
+      <div class="value">
+        <table class="card-table">
+          <tr>
+            <td class="k">계약금 납부</td>
+            <td class="v">2025.12 완료</td>
+          </tr>
+          <tr>
+            <td class="k">청약통장</td>
+            <td class="v">사용(효력 상실)</td>
+          </tr>
+          <tr>
+            <td class="k">처분행위</td>
+            <td class="v">되돌릴 수 없음</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="summary-card damage" style="border-color:#DC2626;">
+      <div class="label">🔒 특별공급 자격 소진 — 이미 되돌릴 수 없음</div>
+      <div class="value">
+        <span class="card-tag" style="color:#991B1B;">※ C-14블록 계약자 전원 공통 기준</span>
+        <table class="card-table" style="border-top:1px solid rgba(0,0,0,0.08);">
+          <tr>
+            <td class="k">본청약 당첨일</td>
+            <td class="v" style="color:#991B1B;">2025-09-01</td>
+          </tr>
+          <tr>
+            <td class="k">재당첨 제한</td>
+            <td class="v" style="color:#991B1B;">2028-08-31까지</td>
+          </tr>
+          <tr>
+            <td class="k">투기과열지구·청약과열지역<br>1순위 청약제한</td>
+            <td class="v" style="color:#991B1B;">2030-08-31까지</td>
+          </tr>
+        </table>
+        <span class="card-note">특별공급으로 당첨된 이상, 이 기간 동안 다른 특별공급·1순위 청약 기회는 이미 사라진 상태</span>
+      </div>
     </div>
     <div class="summary-card equity" style="border-color:#DC2626;">
       <div class="label">⏰ 반복된 시한 불이행 — 상반기 다 지나도록 무산</div>
       <div class="value">
-        "2025년 내 발표" 무산<br>
-        → "2026년 상반기 확정" 재천명 (2026.1.7. 대한경제)<br>
-        → <strong style="color:#DC2626;">2026.6.1. 국토부 정보공개청구 공식 답변:<br>"현재 확정되지 않았으며 지속 협의 중"</strong><br>
-        <span style="font-size:12.5px; opacity:.85;">약속한 상반기(~2026.6)가 끝나가는 시점에도<br>국토부 스스로 미확정을 공식 인정</span>
+        <table class="card-table">
+          <tr>
+            <td class="k">1차 시한</td>
+            <td class="v">"2025년 내 발표"<br>→ 무산</td>
+          </tr>
+          <tr>
+            <td class="k">2차 시한<br>(2026.1.7 대한경제)</td>
+            <td class="v">"2026년 상반기<br>확정" 재천명</td>
+          </tr>
+          <tr>
+            <td class="k">2026.6.1<br>정보공개청구 답변</td>
+            <td class="v" style="color:#DC2626;">"현재 확정되지 않았으며<br>지속 협의 중"</td>
+          </tr>
+        </table>
+        <span class="card-note">약속한 상반기(~2026.6)가 끝나가는 시점에도 국토부 스스로 미확정을 공식 인정</span>
       </div>
     </div>
     <div class="summary-card doublestd">
       <div class="label">⚖️ 자격은 엄격히, 가격은 시장가로</div>
-      <div class="value">소득·자산·무주택 요건은 일반분양보다<br>훨씬 까다롭게 검증하면서, 택지비는<br>조성원가가 아닌 감정가로 산정해<br>분양가는 오히려 시세 수준</div>
+      <div class="value">
+        <table class="card-table">
+          <tr>
+            <td class="k">자격 검증</td>
+            <td class="v">일반분양보다<br>훨씬 까다로움</td>
+          </tr>
+          <tr>
+            <td class="k">택지비 산정</td>
+            <td class="v">조성원가 아닌<br>감정가 적용</td>
+          </tr>
+          <tr>
+            <td class="k">결과</td>
+            <td class="v">분양가는<br>오히려 시세 수준</td>
+          </tr>
+        </table>
+      </div>
     </div>
+  </div>
+
+  <div class="principle-box" style="background:#450A0A;border-left-color:#DC2626;color:#FEE2E2;">
+    <strong style="color:#FCA5A5;">종합하면, 최악의 시나리오가 현실화되고 있습니다</strong>
+    분양전환 시 필요한 <strong>전용 모기지가 삭제</strong>된 채 확정되지 않았고, <strong>분양가 산정 근거(택지비 조성원가 vs 감정가)도 투명하게 공개되지 않은</strong> 상태입니다. 그런데 저희는 이미 <strong>청약통장과 특별공급 자격을 모두 소진</strong>했습니다. 이 세 가지가 겹치면 결론은 하나입니다 — <strong>모기지가 없으면 6년 뒤 분양전환 시점에 필요한 자금을 마련하지 못해 분양을 포기하고, 정해진 임대기간만 채운 뒤 나가야 하며, 그마저도 분양가가 얼마인지조차 모른 채 특별공급 기회만 날린 셈</strong>이 됩니다. 정부의 발표를 신뢰하여 계약한 대가가 이런 것이어서는 안 됩니다.
   </div>
 
   <div class="principle-box">
@@ -467,6 +577,11 @@
     <strong>택지비 산정 방식도 함께 짚어야 할 문제입니다</strong>
     「주택법」 제57조에 따르면 공공택지에서 공급하는 주택의 택지비는 원칙적으로 해당 택지의 <strong>공급가격(조성원가 기반)</strong>에 관련 비용을 가산한 금액으로 산정합니다. 그런데 이번 단지는 택지비 산정에 <strong>감정가</strong>가 반영되어, 비슷한 시기 분양한 인근 민간분양보다 오히려 더 비싼 공공분양이 되었다는 문제 제기가 있습니다.<br><br>
     더 근본적인 문제는 <strong>자격요건과 가격 산정 기준의 불일치</strong>입니다. 뉴홈 선택형은 무주택세대구성원 전원의 소득·자산(총자산 3.54억원 이하 등)을 엄격히 검증해 자격이 없는 신청자는 애초에 걸러내는 구조입니다. 즉 "서민만 청약할 수 있도록" 문턱을 높여놓았습니다. 그런데 정작 가격을 매기는 방식은 서민 기준(조성원가)이 아니라 시장 기준(감정가)을 따랐습니다. 자격은 서민 기준으로 깐깐하게 걸러놓고, 가격은 시장 기준으로 매기는 것은 공공주택 정책의 근본 취지에 반한다고 판단됩니다.
+  </div>
+
+  <div class="principle-box" style="background:#FEF2F2;border-left-color:#DC2626;color:#7F1D1D;">
+    <strong>특별공급 자격 소진, 이미 되돌릴 수 없는 손실입니다</strong>
+    「주택공급에 관한 규칙」에 따라 본청약 당첨일(2025-09-01)을 기준으로 저희는 <strong>2028-08-31까지 재당첨이 제한</strong>되고, <strong>2030-08-31까지 투기과열지구·청약과열지역 1순위 청약이 제한</strong>됩니다. 즉 특별공급으로 한 번 당첨된 이상, 이 기간 동안 다른 특별공급이나 1순위 청약 기회는 이미 쓸 수 없게 된 상태입니다. 정부가 안내한 전용 모기지를 믿고 이 청약에 응한 결과가, 모기지 확정 지연으로 6년 뒤 분양전환 시점에 자금을 마련하지 못해 분양을 포기하고 정해진 임대기간만 채운 뒤 나가야 하는 것이라면, 저희는 생애 몇 번 없는 청약 기회 자체를 날린 채 아무것도 얻지 못하는 상황에 놓이게 됩니다.
   </div>
 
   <h2 class="section-title">계약자 목소리</h2>
@@ -539,8 +654,8 @@
       <h3>동일 사유로 여러 명이 함께 접수하면 병합 처리됩니다</h3>
       <p>「민원 처리에 관한 법률」 제2조제5호에 따라 동일 사유로 다수인이 관련된 민원은 대표자를 선정해 공동 접수할 수 있습니다. 국토교통부·LH 각각 접수해 주세요.</p>
       <div class="btn-group">
-        <a href="#" class="btn btn-primary">국민신문고 민원 접수</a>
-        <a href="#" class="btn btn-outline">한국토지주택공사(LH) 민원</a>
+        <a href="https://www.epeople.go.kr/" target="_blank" rel="noopener" class="btn btn-primary">국민신문고 민원 접수</a>
+        <a href="https://www.lh.or.kr/user/minwonReq/list.do?mid=a10302010000" target="_blank" rel="noopener" class="btn btn-outline">한국토지주택공사(LH) 민원</a>
       </div>
       <div class="copy-block">
         <label>민원 취지문 전문 (복사 후 접수)</label>
@@ -878,6 +993,7 @@
 <footer>
   <p>이 페이지는 화성동탄2 C-14블록 뉴홈 선택형 계약자 모임이 운영합니다.</p>
   <p style="margin-top:6px;">문의: [대표 연락처 또는 오픈채팅방 링크]</p>
+  <p style="margin-top:10px; font-size:12px; color:#64748B;">최종 업데이트: 2026.07.07.</p>
 </footer>
 
 <script>
