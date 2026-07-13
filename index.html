@@ -252,6 +252,8 @@
   .summary-card.damage  { background: #FFFBEB; border-color: #FCD34D; }
   .summary-card.equity  { background: var(--blue-light); border-color: #93C5FD; }
   .summary-card.doublestd { background: #FDF4FF; border-color: #E9D5FF; }
+  .summary-card.violation { background: var(--red-light); border-color: #DC2626; }
+  .summary-card.reference { background: var(--blue-light); border-color: #2563EB; }
 
   .summary-card .label {
     font-size: 12px;
@@ -532,7 +534,7 @@
         </table>
       </div>
     </div>
-    <div class="summary-card damage" style="border-color:#DC2626;">
+    <div class="summary-card damage">
       <div class="label">🔒 특별공급 자격 소진 — 이미 되돌릴 수 없음</div>
       <div class="value">
         <span class="card-tag" style="color:#991B1B;">※ C-14블록 계약자 전원 공통 기준</span>
@@ -553,7 +555,7 @@
         <span class="card-note">특별공급으로 당첨된 이상, 이 기간 동안 다른 특별공급·1순위 청약 기회는 이미 사라진 상태</span>
       </div>
     </div>
-    <div class="summary-card equity" style="border-color:#DC2626;">
+    <div class="summary-card violation">
       <div class="label">⏰ 반복된 시한 불이행 — 상반기 다 지나도록 무산</div>
       <div class="value">
         <table class="card-table">
@@ -592,7 +594,27 @@
         </table>
       </div>
     </div>
-    <div class="summary-card equity" style="border-color:#2563EB;">
+    <div class="summary-card violation">
+      <div class="label">📝 각주 해석 확장 — 계약금 낸 뒤에 유보 범위가 넓어졌습니다</div>
+      <div class="value">
+        <table class="card-table">
+          <tr>
+            <td class="k">2022.10.26. 최초 각주</td>
+            <td class="v">"디딤돌 대출금리 등"<br>→ 만기는 유보 대상 아님</td>
+          </tr>
+          <tr>
+            <td class="k">2025.8~12. 계약자</td>
+            <td class="v" style="color:#DC2626;">계약금 납부·청약통장 사용<br>(만기 40년 조건 신뢰)</td>
+          </tr>
+          <tr>
+            <td class="k">2026.7.7. 국토부 자료</td>
+            <td class="v" style="color:#DC2626;">"금리, 만기 등"<br>→ "만기" 새로 추가</td>
+          </tr>
+        </table>
+        <span class="card-note">계약자가 계약금을 납부하고 청약통장을 소진한 것은 2025년 하반기입니다. 그런데 만기까지 유보 대상에 넣은 국토부 자료는 그로부터 약 1년 뒤인 2026.7.7.에 나왔습니다. 이미 되돌릴 수 없는 처분행위를 마친 뒤에 조건이 불리하게 바뀐 것으로, 사소한 문구 변경이 아닙니다.</span>
+      </div>
+    </div>
+    <div class="summary-card reference">
       <div class="label">📢 고양창릉 S3블록 사례 — 해명은 나왔지만 불씨는 여전</div>
       <div class="value">
         <table class="card-table">
@@ -682,14 +704,16 @@
   <div class="principle-box" style="background:#450A0A;border-left-color:#DC2626;color:#FEE2E2;">
     <strong style="color:#FCA5A5;">종합하면, 최악의 시나리오가 현실화되고 있습니다</strong>
     분양전환 시 필요한 전용 모기지가 삭제된 채 확정되지 않았고, 분양가 산정 근거(택지비 조성원가 vs 감정가)도 투명하게 공개되지 않은 상태입니다. 그런데 저희는 이미 청약통장과 특별공급 자격을 모두 소진했습니다. 이 세 가지가 겹치면 결론은 하나입니다 — 모기지가 없으면 6년 뒤 분양전환 시점에 필요한 자금을 마련하지 못해 분양을 포기하고, 정해진 임대기간만 채운 뒤 나가야 하며, 그마저도 분양가가 얼마인지조차 모른 채 특별공급 기회만 날린 셈이 됩니다. 정부의 발표를 신뢰하여 계약한 대가가 이런 것이어서는 안 됩니다.<br><br>
-    저희가 요구하는 것은 새로운 특혜가 아니라, 2022.10.26. 최초 발표한 조건(한도 5억원·LTV 80%·DSR 미적용·금리 1.9~3.0%·40년 만기 전용 모기지, 임대기간 중 저리 전세대출)을 <strong>사전청약 당첨자와 본청약 당첨자 구분 없이 동일하게</strong> 이행해 달라는 것입니다. 뉴홈 선택형은 2023년 이후 여러 차수에 걸쳐 사전청약이 진행되었고, 사전청약 당첨자든 본청약 당첨자든 모두 같은 정부 발표를 신뢰하여 청약에 응한 것이므로, 청약 시점을 이유로 지원 내용이나 시기에 차등을 두는 것은 신뢰보호원칙에 반한다고 판단합니다.
+    특히 택지비 산정 방식은 이 문제를 더 근본적으로 만듭니다. 「주택법」 제57조상 공공택지 주택은 원칙적으로 조성원가 기반 공급가격으로 산정되어야 함에도, 이번 단지는 감정가가 반영되어 비슷한 시기 분양한 인근 민간분양보다 오히려 비싼 공공분양이 되었습니다. 더 근본적인 문제는 자격요건과 가격 산정 기준의 불일치입니다. 뉴홈 선택형은 무주택세대구성원 전원의 소득·자산(총자산 3.54억원 이하 등)을 엄격히 검증해 "서민만 청약할 수 있도록" 문턱을 높여놓았음에도, 정작 가격을 매기는 방식은 서민 기준(조성원가)이 아니라 시장 기준(감정가)을 따랐습니다. 자격은 서민 기준으로 깐깐하게 걸러놓고 가격은 시장 기준으로 매기는 이 불일치는, 모기지 미확정 문제와 별개로 그 자체가 공공주택 정책의 근본 취지에 반하는 사안입니다.<br><br>
+    저희가 요구하는 것은 새로운 특혜가 아니라, 2022.10.26. 최초 발표한 조건(한도 5억원·LTV 80%·DSR 미적용·금리 1.9~3.0%·40년 만기 전용 모기지, 임대기간 중 저리 전세대출)을 <strong>사전청약 당첨자와 본청약 당첨자 구분 없이 동일하게</strong> 이행하고, 택지비 산정은 「주택법」 제57조에 따른 <strong>조성원가 기준</strong>으로 투명하게 공개해 달라는 것입니다. 뉴홈 선택형은 2023년 이후 여러 차수에 걸쳐 사전청약이 진행되었고, 사전청약 당첨자든 본청약 당첨자든 모두 같은 정부 발표를 신뢰하여 청약에 응한 것이므로, 청약 시점을 이유로 지원 내용이나 시기에 차등을 두는 것은 신뢰보호원칙에 반한다고 판단합니다.
   </div>
 
   <h2 class="section-title" style="margin-top:36px;">신뢰보호원칙 (행정절차법 제4조)</h2>
   <div class="principle-box">
     <strong>신뢰보호원칙이란?</strong>
     행정기관은 국민에게 공적으로 표명한 조건을 특별한 사정 없이 함부로 뒤집을 수 없다는 「행정절차법」 제4조상 원칙입니다. 저희는 본청약 시점에 이미 모기지 조항이 빠진 것을 알고 있었지만, LH가 안내한 "국토부의 2025년 내 발표"라는 구체적 약속을 신뢰하여 계약금 납부와 청약통장 사용이라는 되돌릴 수 없는 처분행위를 완료했습니다. 그 약속이 지켜지지 않은 채 "2026년 상반기 확정"이라는 새로운 시한이 다시 제시되었고, 그 상반기가 끝나가는 2026.6.1. 국토교통부는 정보공개청구 답변을 통해 <strong>"기금대출 지원요건이 현재 확정되지 않았으며 LH·HUG·수탁은행과 지속 협의 중"</strong>이라고 스스로 밝혔습니다(접수번호 16692854). 즉 정부가 언론을 통해 공표한 시한을, 정부 스스로 법적 절차인 정보공개청구 답변으로 재차 어겼다는 사실이 공식 확인된 것이 이번 사안의 핵심입니다.<br><br>
-    더욱이 고양창릉 S3블록(나눔형)에서도 2026.6.30. 본청약 공고 시 전용 모기지 조항이 빠져 논란이 되었고, 국토부는 2026.7.7. 해명자료를 통해 "잔금대출 5억 한도는 소득기준·주택가격 요건과 관계없이 차질없이 지원할 계획"이라고 밝혔습니다. 다만 세부 금리·만기 조건은 2022년 최초 약속(1.9~3.0%, 40년)이 아니라 "대출 신청 시점의 디딤돌 대출 요건"을 적용한다고 하여, 실제 지원 조건이 최초 약속보다 불리해질 가능성을 배제할 수 없습니다. 신뢰보호원칙이 성립하려면 ① 공적 견해표명, ② 그 신뢰의 정당성, ③ 신뢰에 기한 처분행위, ④ 공익상 정당한 사유 없는 번복이라는 네 요건이 모두 충족되어야 하는데, 저희는 앞의 세 요건을 이미 충족한 상태입니다. 고양창릉 사례에서 국토부가 "세부 조건은 대출 신청 시점 기준을 적용한다"고 밝힌 것은, 최초 발표 조건 자체가 그대로 지켜지지 않을 수 있다는 뜻이며, 이는 화성동탄2 C-14블록(선택형)에도 동일하게 적용될 수 있는 논리라는 점에서 저희가 주의 깊게 지켜봐야 할 선례입니다.
+    더욱이 고양창릉 S3블록(나눔형)에서도 2026.6.30. 본청약 공고 시 전용 모기지 조항이 빠져 논란이 되었고, 국토부는 2026.7.7. 해명자료를 통해 "잔금대출 5억 한도는 소득기준·주택가격 요건과 관계없이 차질없이 지원할 계획"이라고 밝혔습니다. 다만 세부 금리·만기 조건은 2022년 최초 약속(1.9~3.0%, 40년)이 아니라 "대출 신청 시점의 디딤돌 대출 요건"을 적용한다고 하여, 실제 지원 조건이 최초 약속보다 불리해질 가능성을 배제할 수 없습니다. 신뢰보호원칙이 성립하려면 ① 공적 견해표명, ② 그 신뢰의 정당성, ③ 신뢰에 기한 처분행위, ④ 공익상 정당한 사유 없는 번복이라는 네 요건이 모두 충족되어야 하는데, 저희는 앞의 세 요건을 이미 충족한 상태입니다. 고양창릉 사례에서 국토부가 "세부 조건은 대출 신청 시점 기준을 적용한다"고 밝힌 것은, 최초 발표 조건 자체가 그대로 지켜지지 않을 수 있다는 뜻이며, 이는 화성동탄2 C-14블록(선택형)에도 동일하게 적용될 수 있는 논리라는 점에서 저희가 주의 깊게 지켜봐야 할 선례입니다.<br><br>
+    네 번째 요건인 "번복"은 이미 실제로 발생하고 있습니다. 2022.10.26. 최초 발표 각주에는 <strong>"디딤돌 대출금리 등"</strong>이라고만 명시되어 유보 대상이 금리로 한정되어 있었고, 40년 만기는 확정된 조건으로 신뢰할 수 있었습니다. 그런데 저희가 이 조건을 신뢰하여 계약금 납부·청약통장 사용이라는 처분행위를 마친 뒤인 2026.7.7. 국토교통부 자료는 <strong>"금리, 만기 등"</strong>이라고 표현하여 최초 각주에는 없던 "만기"를 새로 추가하였습니다. 이는 국토교통부가 스스로 공표한 조건의 유보 범위를 사후적으로 확장한 것으로, 공익상 정당한 사유 없이 이미 표명한 조건을 뒤집은 전형적인 "번복"에 해당합니다. 처분행위 이후에 유보 범위 자체가 넓어졌다는 점에서, 이는 단순한 이행 지연을 넘어 신뢰보호원칙 위반의 정도를 더욱 뚜렷하게 합니다.
   </div>
 
   <h2 class="section-title" style="margin-top:36px;">택지비 산정 방식 (주택법 제57조)</h2>
@@ -705,6 +729,20 @@
     「주택공급에 관한 규칙」에 따라 본청약 당첨일(2025-09-01)을 기준으로 저희는 <strong>2028-08-31까지 재당첨이 제한</strong>되고, <strong>2030-08-31까지 투기과열지구·청약과열지역 1순위 청약이 제한</strong>됩니다. 즉 특별공급으로 한 번 당첨된 이상, 이 기간 동안 다른 특별공급이나 1순위 청약 기회는 이미 쓸 수 없게 된 상태입니다. 정부가 안내한 전용 모기지를 믿고 이 청약에 응한 결과가, 모기지 확정 지연으로 6년 뒤 분양전환 시점에 자금을 마련하지 못해 분양을 포기하고 정해진 임대기간만 채운 뒤 나가야 하는 것이라면, 저희는 생애 몇 번 없는 청약 기회 자체를 날린 채 아무것도 얻지 못하는 상황에 놓이게 됩니다.
   </div>
 
+  <h2 class="section-title" style="margin-top:36px;">각주 해석 확장 쟁점 — 국토부가 유보 범위를 사후에 넓혔습니다</h2>
+  <div class="principle-box" style="background:#FEF2F2;border-left-color:#DC2626;color:#7F1D1D;">
+    <strong>"금리"만 유보였던 것이, 계약자가 계약금을 낸 뒤 "만기"까지 유보로 바뀌었습니다</strong>
+    2022.10.26. 최초 발표 당시 각주에는 <strong>"디딤돌 대출금리 등"</strong>이라고만 명시되어 있었습니다. 문언 그대로 읽으면 추후 시장 상황에 따라 유보될 수 있는 항목은 "금리"(및 이와 유사한 항목)로 한정되며, <strong>40년 만기는 확정된 조건</strong>으로 신뢰할 수 있었습니다. 계약자는 이 조건을 신뢰하여 <strong>2025.8~12. 계약금을 납부하고 청약통장을 사용(효력 상실)</strong>하는, 되돌릴 수 없는 처분행위를 마쳤습니다.<br><br>
+    그런데 그로부터 약 1년 가까이 지난 2026.7.7. 국토교통부 보도설명자료는 <strong>"금리, 만기 등"</strong>이라고 표현하여, 최초 각주에는 없던 "만기"를 별도로 추가 명시하였습니다. 즉 계약자가 만기 40년 조건을 신뢰하여 계약금 납부·청약통장 소진이라는 처분행위를 이미 완료한 뒤에, 국토교통부가 스스로 유보 범위를 사후적으로 확장한 것입니다.
+    <table style="margin-top:14px; width:100%; border-collapse:collapse; font-size:13.5px;">
+      <tr style="border-bottom:2px solid #DC2626;"><th style="text-align:left; padding:6px 8px;">시점</th><th style="text-align:left; padding:6px 8px;">내용</th></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 8px; font-weight:600;">2022.10.26.</td><td style="padding:6px 8px;">최초 각주 "디딤돌 대출금리 등" — 40년 만기는 확정 조건으로 신뢰</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1); background:#FEE2E2;"><td style="padding:6px 8px; font-weight:600;">2025.8~12.</td><td style="padding:6px 8px; color:#DC2626; font-weight:600;">계약자, 이 조건을 신뢰하여 계약금 납부·청약통장 사용 완료(되돌릴 수 없는 처분행위)</td></tr>
+      <tr><td style="padding:6px 8px; font-weight:600;">2026.7.7.</td><td style="padding:6px 8px; color:#DC2626; font-weight:600;">국토부 자료 "금리, 만기 등" — "만기"가 새로 추가되어 유보 범위 확장</td></tr>
+    </table>
+    <span class="card-note">"디딤돌 대출금리 등"의 "등"을 예시적 열거로 넓게 해석하더라도, 금리와 성격이 전혀 다른 "만기"까지 포섭한다고 보기는 문언상 무리가 있습니다. 더욱이 이러한 확장 해석이 계약자의 계약금 납부·청약통장 소진이라는 처분행위 이후에 나왔다는 점에서, 신뢰보호원칙(「행정절차법」 제4조)이 요구하는 네 가지 요건(공적 견해표명, 신뢰의 정당성, 신뢰에 기한 처분행위, 공익상 정당한 사유 없는 번복) 중 앞의 세 가지를 계약자가 이미 충족한 상태에서 네 번째 요건인 "번복"이 발생한 사안입니다. 앞서 살펴본 예상 피해 규모(만기 단축만으로 월 상환액이 30% 가까이 증가)를 고려하면 결코 사소한 문구 변경이 아닙니다.</span>
+  </div>
+
   <h2 class="section-title" style="margin-top:36px;">고양창릉 S3블록 사례 — 해명은 나왔지만, 남 얘기가 아닙니다</h2>
   <div class="principle-box" style="background:var(--blue-light);border-left-color:#2563EB;color:#1E3A8A;">
     <strong>2026.6.30. 논란 발생 → 2026.7.7. 국토부 해명, 그러나 불씨는 여전</strong>
@@ -713,6 +751,37 @@
     분양주택 단지의 당첨자에게 제공되는 중도금 대출과 관련해서는, 고양창릉 S3블록은 2027년 5월이 첫 중도금 납부시기이므로 <strong>2027년 1분기에 중도금 집단대출 협약을 추진할 계획</strong>이며, 협약체결이 완료되는 대로 계약자에게 안내할 예정이라고 밝혀 여전히 미확정 상태임을 인정했습니다.<br><br>
     가장 주목해야 할 부분은 마지막 문장입니다. 국토교통부는 <strong>"향후 공급 예정인 뉴홈 나눔형, 선택형 분양주택 입주자모집공고 시에도 위 사항을 반영하여 공고할 계획"</strong>이라고 명시했습니다. 즉 잔금대출 5억 한도 지원 방침과, 세부 조건은 "대출 신청 시점 기준 적용"이라는 원칙 모두가 화성동탄2 C-14블록(선택형)에도 그대로 적용될 예정이라는 뜻입니다.<br><br>
     <strong>저희가 이 사례를 주목해야 하는 이유는 두 가지입니다.</strong> 첫째, 잔금대출 한도(5억원) 자체는 유지된다는 점에서 완전히 부정적인 소식만은 아닙니다. 둘째, 그러나 세부 금리·만기 조건이 "대출 신청 시점 기준"으로 바뀌는 이상, 2022년 최초 약속(금리 1.9~3.0%, 40년 만기)이 지금 그대로 지켜진다는 보장은 없습니다. 저희 C-14블록도 같은 방침이 적용될 예정인 만큼, "5억원 지원"이라는 문구만 볼 것이 아니라 실제 금리·만기 조건이 최초 약속과 동일한지를 반드시 확인해야 합니다.
+  </div>
+
+  <h2 class="section-title" style="margin-top:36px;">자격요건-혜택 균형 붕괴 — 왜 이 문제가 단순 지연이 아닌가</h2>
+  <div class="principle-box" style="background:#FFFBEB;border-left-color:#F59E0B;color:#78350F;">
+    <strong>엄격한 자격요건은 그대로, 그 대가였던 혜택만 사라지고 있습니다</strong>
+    뉴홈 정책은 일반 민영청약보다 훨씬 엄격한 자격요건(소득·자산 제한)을 신청자에게 부과하는 대신, 그 반대급부로 저가 분양과 전용 저금리 모기지라는 확실한 혜택을 제공한다는 정책적 교환관계 위에서 설계되었습니다. 그런데 국토교통부는 자격요건은 그대로 유지하면서, 그 대가로 약속한 모기지 혜택만 사후적으로 유보·축소하고 있습니다. 이는 단순한 발표 지연이 아니라, 제도 전체의 정당성 근거였던 "엄격한 진입장벽 ↔ 확실한 혜택"이라는 균형 자체가 무너진 것입니다.
+    <table style="margin-top:14px; width:100%; border-collapse:collapse; font-size:13.5px;">
+      <tr style="border-bottom:2px solid #F59E0B;"><th style="text-align:left; padding:6px 8px;">구분</th><th style="text-align:left; padding:6px 8px;">뉴홈 선택형(C-14)</th><th style="text-align:left; padding:6px 8px;">일반 민영/공공 청약</th></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 8px; font-weight:600;">무주택 요건</td><td style="padding:6px 8px;">세대구성원 전원 무주택</td><td style="padding:6px 8px;">세대주 중심(유형별 상이)</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 8px; font-weight:600;">소득기준</td><td style="padding:6px 8px;">도시근로자 월평균소득 100~150% 이하</td><td style="padding:6px 8px;">민영 일반공급은 소득제한 없음</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 8px; font-weight:600;">총자산기준</td><td style="padding:6px 8px;">약 3.5억원 이하(부동산+자동차+금융자산-부채)</td><td style="padding:6px 8px;">민영 일반공급은 자산기준 없음</td></tr>
+      <tr ><td style="padding:6px 8px; font-weight:600;">자동차가액</td><td style="padding:6px 8px;">약 3,683만원 이하</td><td style="padding:6px 8px;">제한 없음</td></tr>
+    </table>
+    <span class="card-note">뉴홈 선택형 신청자는 소득·자산 제한이라는 뚜렷한 불이익을 감수하고 청약에 응했습니다. 이러한 엄격한 자격요건을 감수한 대가가 불확실한 모기지라면, 애초 제도 설계의 정당성 근거(엄격한 자격요건에 대한 반대급부)가 성립하지 않습니다.</span>
+  </div>
+
+  <h2 class="section-title" style="margin-top:36px;">예상 피해 규모 — 전용 모기지 원안 vs 디딤돌대출 전환 시</h2>
+  <div class="principle-box" style="background:#FEF2F2;border-left-color:#DC2626;color:#7F1D1D;">
+    <strong>"만기"가 유보 대상에 새로 추가된 것은 결코 사소한 조정이 아닙니다</strong>
+    C-14블록 52형(예상 분양전환가 8.5억원, 대출 5억원 가정)을 기준으로, 2022년 최초 약속(1.9~3.0%, 40년)과 국토교통부가 실제 적용을 시사한 디딤돌대출 준용 조건을 비교하면 다음과 같은 손해가 발생합니다.
+    <table style="margin-top:14px; width:100%; border-collapse:collapse; font-size:13px;">
+      <tr style="border-bottom:2px solid #DC2626;"><th style="text-align:left; padding:6px 6px;">시나리오</th><th style="text-align:left; padding:6px 6px;">금리</th><th style="text-align:left; padding:6px 6px;">만기</th><th style="text-align:right; padding:6px 6px;">월 상환액</th><th style="text-align:right; padding:6px 6px;">총 이자</th></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 6px; font-weight:600;">원안(전용모기지 최저)</td><td style="padding:6px 6px;">1.9%</td><td style="padding:6px 6px;">40년</td><td style="padding:6px 6px; text-align:right;">143만원</td><td style="padding:6px 6px; text-align:right;">1.9억원</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 6px; font-weight:600;">원안(전용모기지 중위값)</td><td style="padding:6px 6px;">2.45%</td><td style="padding:6px 6px;">40년</td><td style="padding:6px 6px; text-align:right;">161만원</td><td style="padding:6px 6px; text-align:right;">2.7억원</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 6px; font-weight:600;">원안(전용모기지 최고)</td><td style="padding:6px 6px;">3.0%</td><td style="padding:6px 6px;">40년</td><td style="padding:6px 6px; text-align:right;">179만원</td><td style="padding:6px 6px; text-align:right;">3.6억원</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 6px; font-weight:600;">만기만 30년 단축(중위금리)</td><td style="padding:6px 6px; color:#DC2626; font-weight:600;">2.45%</td><td style="padding:6px 6px; color:#DC2626; font-weight:600;">30년</td><td style="padding:6px 6px; text-align:right;">198만원</td><td style="padding:6px 6px; text-align:right;">2.13억원</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 6px; font-weight:600;">디딤돌 준용(중위값, 40년 가정)</td><td style="padding:6px 6px; color:#DC2626; font-weight:600;">3.5%</td><td style="padding:6px 6px;">40년</td><td style="padding:6px 6px; text-align:right;">211만원</td><td style="padding:6px 6px; text-align:right;">5.1억원</td></tr>
+      <tr style="border-bottom:1px solid rgba(0,0,0,0.1);"><td style="padding:6px 6px; font-weight:600;">디딤돌 준용(중위값, 실제 30년 한도)</td><td style="padding:6px 6px; color:#DC2626; font-weight:600;">3.5%</td><td style="padding:6px 6px; color:#DC2626; font-weight:600;">30년</td><td style="padding:6px 6px; text-align:right;">225만원</td><td style="padding:6px 6px; text-align:right;">3.1억원</td></tr>
+      <tr><td style="padding:6px 6px; font-weight:600;">디딤돌 준용(최고금리, 40년 가정)</td><td style="padding:6px 6px; color:#DC2626; font-weight:600;">4.15%</td><td style="padding:6px 6px;">40년</td><td style="padding:6px 6px; text-align:right;">232만원</td><td style="padding:6px 6px; text-align:right;">6.1억원</td></tr>
+    </table>
+    <span class="card-note">디딤돌대출 일반조건으로 전환될 경우, 40년 만기 자체가 디딤돌대출 상품의 만기 옵션(10/15/20/30년)에 없기 때문에 금리 상승과 만기 단축이 동시에 발생하는 것이 가장 현실적인 시나리오이며, 이 경우 원안 대비 총이자 기준 약 1.2억~2.4억원의 손해가 발생합니다. 이는 국토부가 2026.7.7. 자료에서 금리뿐 아니라 "만기"까지 유보 대상에 새로 포함시킨 것이, 단순한 문구 조정이 아니라 실질적으로 수천만원~수억원 규모의 손해로 이어질 수 있는 사안임을 보여줍니다.</span>
   </div>
 
 </div>
@@ -725,6 +794,7 @@
     <button onclick="switchSubTab('press', this)">언론 제보</button>
     <button onclick="switchSubTab('mp', this)">의원 제보</button>
     <button onclick="switchSubTab('foi', this)">정보공개청구</button>
+    <button onclick="switchSubTab('audit', this)">감사원 감사청구</button>
   </nav>
 
   <!-- 2-1. 다수인관련민원 -->
@@ -1122,6 +1192,78 @@
     </div>
   </div>
   </div>
+
+  <!-- 2-5. 감사원 감사청구 -->
+  <div id="subtab-audit" class="subtab-content">
+  <div class="action-section">
+    <h2 class="section-title">국민감사청구 (감사원)</h2>
+
+    <div style="background:#EFF6FF; border:1px solid #93C5FD; border-radius:10px; padding:16px 18px; margin-bottom:18px;">
+      <div style="font-size:14px; font-weight:700; color:#1E40AF; margin-bottom:4px;">📋 300명 이상 연서 시 청구 가능 — 서명부 취합이 필요합니다</div>
+      <div style="font-size:13px; color:#1E3A8A; line-height:1.6;">「부패방지 및 국민권익위원회의 설치와 운영에 관한 법률」 제72조에 따라 19세 이상 국민 300명 이상의 연서로 국민감사청구가 가능합니다. C-14블록 계약자 350명 이상이 이미 공동대응에 동의한 상태이나, 실제 청구를 위해서는 성명·생년월일·주소·서명이 포함된 서명부를 별도로 취합해야 합니다.</div>
+    </div>
+
+    <div class="card">
+      <h3>왜 감사청구까지 가야 하는가</h3>
+      <p>다수인관련민원과 정보공개청구만으로는 강제력 있는 조사가 이루어지지 않을 수 있습니다. 감사원 국민감사청구는 ① 반복된 발표 지연(2025년 연내 → 2026년 상반기 → 현재까지 미이행)에 대한 직무감사, ② 2026.7.7. 자료에서 "만기"가 유보 대상에 추가된 경위에 대한 결재문서 확인, ③ 정보공개청구에서 관련 문서가 "부존재"로 처리될 경우 그 부존재 처리 자체의 적정성까지 조사 대상으로 요청할 수 있는 절차입니다.</p>
+    </div>
+
+    <div class="card">
+      <h3>접수 경로</h3>
+      <table class="card-table">
+        <tr><td class="k">접수처</td><td class="v">국민신문고(국민권익위원회 경유) 또는 감사원 직접 접수</td></tr>
+        <tr><td class="k">청구인 자격</td><td class="v">19세 이상 국민 300명 이상 연서</td></tr>
+        <tr><td class="k">첨부 필수</td><td class="v">청구인 명부(성명·생년월일·주소·서명), 증거자료 일체</td></tr>
+        <tr><td class="k">처리 절차</td><td class="v">요건심사(약 30일)→ 감사 실시 여부 결정 → 감사 실시 → 결과 통보</td></tr>
+      </table>
+      <div class="btn-group" style="margin-top:14px;">
+        <a href="https://www.epeople.go.kr/" target="_blank" rel="noopener" class="btn btn-primary">국민신문고 국민감사청구 접수</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>국민감사청구서 전문</h3>
+      <p>아래 내용을 복사해 청구인 명부와 증거자료를 첨부하여 접수해 주세요.</p>
+      <div class="copy-block">
+        <textarea id="audit-text" rows="26" readonly>[국민감사청구서]
+
+청구인: 화성동탄2 C-14블록 뉴홈 선택형 계약자 등 300인 이상 연서 (명부 별첨)
+청구 대상기관: 국토교통부, 한국토지주택공사(LH)
+
+청구 취지:
+국토교통부 및 한국토지주택공사(LH)의 뉴홈 전용 모기지 상품 관련 반복된 발표 지연 및 유보범위 사후 확장 행위, 그리고 이와 관련한 문서 생산·관리 실태에 대한 감사를 실시하여 줄 것을 청구합니다.
+
+청구 이유:
+
+1. 국토교통부는 2022.10.26. 뉴홈 선택형에 나눔형과 동일한 조건(한도 5억원·LTV 80%·DSR 미적용·금리 1.9~3.0%·40년 만기 전용 모기지, 임대기간 중 저리 전세대출)의 금융지원을 공적으로 발표하였습니다.
+
+2. 그러나 이 약속은 반복적으로 지연되었습니다. 1차로 2025.8. LH를 통해 "2025년 연내 발표"가 안내되었으나 미이행되었고, 2차로 2026.1.7. 언론보도를 통해 국토교통부가 "2026년 상반기 중 확정·출시"를 재천명하였으나 이 역시 이행되지 않았습니다. 2026.6.1. 국토교통부의 정보공개청구 공식 답변(접수번호 16692854)은 "여전히 확정되지 않았으며 지속 협의 중"이라고 밝혀, 정부가 언론에 공표한 시한을 법적 절차를 통해 스스로 재차 어겼음이 확인되었습니다.
+
+3. 2026.7.7. 국토교통부 보도설명자료는 고양창릉 S3블록 관련하여 "금리, 만기 등 세부 대출조건은 대출 신청 시점의 디딤돌 대출 요건을 적용할 예정"이라고 밝혔습니다. 그러나 2022년 최초 발표 각주에는 "디딤돌 대출금리 등"이라고만 명시되어 있어 유보 대상이 금리로 한정되어 있었습니다. 국토교통부가 사후적으로 "만기"까지 유보 대상에 추가한 것으로 볼 수 있는 정황이며, 이는 국민에게 공표한 조건을 사후적으로 축소 해석한 것으로 신뢰보호원칙(「행정절차법」 제4조) 위반 소지가 있습니다.
+
+4. 반복된 발표 지연 및 유보범위 확장의 근거가 된 내부 검토·결재 문서에 대하여 정보공개청구 시 "부존재"로 처리될 가능성이 있는바, 이 경우 아래와 같은 이유로 그 자체가 별도의 감사 사유에 해당한다고 판단합니다.
+   - 「공공기록물 관리에 관한 법률」 제16조는 공공기관이 업무 수행과 관련하여 생산된 기록물을 관리하도록 규정하고 있으며, 대외적으로 공식 발표("연내 발표", "상반기 출시" 등 확정적 시기 명시)를 한 이상 그 근거가 되는 의사결정 과정을 기록화했어야 함에도 이를 하지 않았다면 이는 기록물 생산 의무 위반에 해당합니다.
+   - 설령 구두로 결정되었다 하더라도, 그 결정이 대외적으로 공식 발표된 이상 사후적으로라도 기록화했어야 하며, 확정적 언어로 대외 공표한 근거가 실무진 간 구두 협의에 불과하다는 것은 발표의 확정성과 근거 부재 간 모순에 해당합니다.
+
+5. 뉴홈 선택형은 일반 민영청약보다 훨씬 엄격한 자격요건(소득 100~150% 이하, 총자산 3.5억원 이하 등)을 부과하면서도, 그 반대급부로 약속한 모기지 혜택은 사후 유보·축소되고 있어, 자격요건-혜택 간 정책적 균형이 붕괴된 상태입니다.
+
+감사 요청사항:
+
+가. 위 1~2항 관련, 반복된 발표 지연(2025년 연내 발표, 2026년 상반기 확정)의 근거가 된 내부 의사결정 문서(기안, 검토, 협조, 결재라인 포함) 존재 여부 확인
+나. 위 문서가 부존재로 확인될 경우, 대외 공식발표에 상응하는 기록물이 생산·관리되지 않은 경위에 대한 조사 및 「공공기록물 관리에 관한 법률」 위반 여부 확인
+다. 2026.7.7. 자료에서 "만기"가 유보 대상에 추가된 경위 및 이를 결정한 부서·결재라인 확인
+라. 나눔형과 선택형 간 모기지 조건 명시 여부의 차이가 발생한 경위 확인 및 형평성 위반 여부 조사
+마. 위 사항에 대한 재발방지 대책 마련 권고
+
+첨부자료: 2022.10.26. 국토교통부 보도자료, 사전청약·본청약 공고문 대조표, 2026.6.1. 정보공개청구 답변(접수번호 16692854), 2026.7.7. 국토교통부 보도설명자료(고양창릉 S3블록 관련), 청구인 명부, 관련 언론보도 일체</textarea>
+        <div class="copy-row">
+          <button class="btn btn-primary btn-sm" onclick="copyText('audit-text', this)">복사하기</button>
+        </div>
+      </div>
+      <div class="notice" style="margin-top:12px;">📌 청구인 명부(성명·생년월일·주소·서명)는 별도로 취합해 첨부해야 합니다. 온라인 서명 시에도 본인확인 절차가 필요할 수 있습니다.</div>
+    </div>
+  </div>
+  </div>
 </div>
 
 <!-- ===== 탭3: 관련기사 ===== -->
@@ -1140,6 +1282,28 @@
         <span class="kw">#영상리포트당첨자현장반발</span>
       </div>
     </a>
+
+    <a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202607070441307930158" target="_blank" rel="noopener" class="news-card">
+      <div class="news-date">2026.07.07. · 대한경제 · 황은우 기자</div>
+      <div class="news-title">[3기신도시 모기지 폐지 논란]① 본청약 이르러 모기지 미확실…사전청약자들 "진단소송" 불사</div>
+      <div class="news-keywords">
+        <span class="kw">#3기신도시모기지폐지논란연재</span>
+        <span class="kw">#본청약모기지미확정</span>
+        <span class="kw">#사전청약자집단대응</span>
+      </div>
+    </a>
+
+    <div class="news-card" style="background:var(--blue-light); cursor:default;">
+      <div class="news-date">2026.07.07. · 대한경제 · 황은우 기자 (제공된 지면 이미지)</div>
+      <div class="news-title">[3기신도시 모기지 폐지 논란]② 주택 수요 억제·대출 규제 강화·재원 부족… '뉴홈 모기지' 올스톱</div>
+      <div class="news-keywords">
+        <span class="kw">#은행권출시꺼리는까닭</span>
+        <span class="kw">#화성동탄2C14블록본청약공고전용모기지혜택포함안돼</span>
+        <span class="kw">#주택도시기금여유자금도14조원그쳐</span>
+        <span class="kw">#정부디딤돌대출로선회한듯</span>
+        <span class="kw">#신뢰보호원칙위반책임여지</span>
+      </div>
+    </div>
 
     <a href="https://www.sedaily.com/article/20064822" target="_blank" rel="noopener" class="news-card" style="border-color:#93C5FD; background:var(--blue-light);">
       <div class="news-date">2026.07.07. · 서울경제(국토교통부 보도설명자료 인용)</div>
